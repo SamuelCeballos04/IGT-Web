@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"><!-- Aqui se agrega el bootstrap de las tablas-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src = "{{ url_for('static', filename='js/opciones.js') }}"></script>
+    <script type="text/javascript">
+        var flag = {{bandera}}
+        var flag2 = {{bandera2}}
+        var flaghorario = {{banderaHorarioH}}
+    </script>
+    <title>Opciones</title>
+</head>
+{% with messages = get_flashed_messages(with_categories=true) %}
+   {% if messages %}
+      {% for category, message in messages %}
+      <div class="{{category}}">{{ message }}</div>
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+<body onload="onload({{bandera}}, {{bandera2}}, {{banderaHorarioH}})">
+    <h1 class="titulo">GoGamblerGo
+        <div class = "usuario" style = "font-size: 70%" >¡Bienvenid@, {{name}}!</div>
+    </h1>
+    <!-- <div class = "perfil">
+        <a href = "{{url_for('perfil')}}" id="aprofile">
+            <button type="button" class = "profileButton" id="btnpr">
+                <img src="{{ url_for('static', filename='png/account-circle.png') }}" alt="Perfil" width = "65" height = "65">
+            </button>
+        </a>
+    </div> -->
+    <section class="middle" id="sex-ion">
+        <form action="{{url_for('instrucciones')}}" method = 'get' class="formulario" autocomplete="off">
+            
+            <a href="{{url_for('instrucciones')}}" id="startL">
+                <button type="button" class="boton2" action="{{url_for('instrucciones')}}" id="start">Cuestionario</button><br>
+            </a>
+        </form>
+        <a href = "{{url_for('perfil')}}" id="aprofile" >
+            <button class = "boton" id="btnpr" type = "submit" action = "{{url_for('perfil')}}">Perfil</button>
+        </a>
+        <form action="{{url_for('resultados')}}" method = 'get' class="formulario" id="formFinal">
+            <a href = "{{url_for('resultados')}}" id="resultados" >
+                <button class = "boton2" id="btnHorario" type = "submit" action = "{{url_for('resultados')}}">Horarios</button>
+            </a>
+        </form>
+        <a href="{{url_for('index')}}">
+                <button class="boton" action="{{url_for('login')}}" type="submit">Salir</button>
+        </a>
+
+    </section>
+    
+</body>
+</html>
